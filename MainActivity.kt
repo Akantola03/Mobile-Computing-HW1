@@ -45,9 +45,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeTutorialTheme {
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    MessageCard(Message("Atte","Welcome to my page!"))
-                }
                 Conversation(SampleData.conversationSample)
             }
         }
@@ -60,19 +57,16 @@ fun MessageCard(msg: Message){
     // Padding around the message
     Row(modifier = Modifier.padding(all = 8.dp)) {
         Image(
+            // Here we choose the image and edit its properties
             painter = painterResource(R.drawable.minecraft_2024_cover_art),
             contentDescription = null,
             modifier = Modifier
-                // image size
                 .size(40.dp)
-                // clip image
                 .clip(CircleShape)
-                // border around the image
                 .border(1.5.dp, MaterialTheme.colorScheme.primary, CircleShape)
         )
         // Adds horizontal space between image and columns
         Spacer(modifier = Modifier.width(8.dp))
-
         // Tracks whether message is expanded or not
         var isExpanded by remember { mutableStateOf(false) }
 
@@ -100,13 +94,7 @@ fun MessageCard(msg: Message){
 @Composable
 fun Conversation(messages: List<Message>){
     LazyColumn {
-        items(messages) { message ->
-            MessageCard(message)
+        items(messages) { message -> MessageCard(message)
         }
     }
 }
-
-
-
-
-
