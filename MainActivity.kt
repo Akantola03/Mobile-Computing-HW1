@@ -52,6 +52,8 @@ class MainActivity : ComponentActivity() {
 }
 
 data class Message(val author: String, val body: String)
+
+// Shows the message with users image, name and text.
 @Composable
 fun MessageCard(msg: Message){
     // Padding around the message
@@ -69,7 +71,6 @@ fun MessageCard(msg: Message){
         Spacer(modifier = Modifier.width(8.dp))
         // Tracks whether message is expanded or not
         var isExpanded by remember { mutableStateOf(false) }
-
         // Toggles the isExpanded variable when we click on this Column
         Column(modifier = Modifier.clickable {isExpanded = !isExpanded}) {
         Text(text = msg.author,
@@ -91,6 +92,7 @@ fun MessageCard(msg: Message){
     }
 }
 
+// Shows the conversation stored in SampleData
 @Composable
 fun Conversation(messages: List<Message>){
     LazyColumn {
